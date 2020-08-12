@@ -2,6 +2,10 @@ language: node_js
 node_js:
   - "stable"
 
+cache:
+  dependencies:
+    node_modules
+
 script:
   - npm install
   - npm test
