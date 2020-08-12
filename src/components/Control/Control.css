@@ -4,13 +4,15 @@
     display: block;
     margin: 20px auto;
     text-align: center;
-    border: 2px solid rgba(31, 44, 31, 0.829);
+    border: 2px solid rgba(158, 168, 158, 0.829);
     padding: 14px 40px;
     width: 200px;
     outline: none;
-    color: rgba(31, 44, 31, 0.829);
+    color: rgba(168, 177, 168, 0.829);
+    background-color: aquamarine;
     border-radius: 24px;
     cursor: pointer;
+    text-shadow: aqua;
 }
 .controls-container button:hover{
     background-color:rgba(31, 44, 31, 0.829);
