@@ -34,4 +34,4 @@ export default function swDev() {
         .catch((err) => {
             console.log('Error', err)
         })
-}
+}   
