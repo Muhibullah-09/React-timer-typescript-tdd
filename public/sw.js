@@ -3,7 +3,7 @@
 //when you go online you just take it from the cache 'its faster and more effecctive'.
 const CACHE_NAME = "StopWatch-1";
 
-
+const self = this
 //Cache Initializer
 self.addEventListener("install", (event) => {
     event.waitUntil(
@@ -21,6 +21,14 @@ self.addEventListener("install", (event) => {
 
 // Listen for requests
 self.addEventListener('fetch', event => {
+    // console.log('url', event.request.url);
+    if (event.request.url === 'https://fantastic-balls.surge.sh/static/js/main.chunk.js') {
+        event.waitUntil(
+            self.registration.showNotification("EebTech", {
+                body: 'Hello from EebTech'
+            })
+        );
+    }
     // Prevent the default, and handle the request ourselves.
     event.respondWith(async function () {
         // Try to get the response from a cache.
