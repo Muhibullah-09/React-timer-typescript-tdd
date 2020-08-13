@@ -28,39 +28,4 @@ self.addEventListener('fetch', function (event) {
     );
 });
 
-/* This is sample of weather app
-self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.open(CACHE_NAME).then(cache => {
-     return cache.match(event.request).then(response => {
-      return response || fetch(event.request)
-      .then(response => {
-        const responseClone = response.clone();
-        cache.put(event.request, responseClone);
-        })
-      })
-    }
- );
-});
-
-// Activate the SW
-self.addEventListener('activate', (event) => {
-    const cacheWhitelist = [];
-    cacheWhitelist.push(CACHE_NAME);
-
-    event.waitUntil(
-        caches.keys().then((cacheNames) => Promise.all(
-            cacheNames.map((cacheName) => {
-                if (!cacheWhitelist.includes(cacheName)) {//if cacheWhitelist does not include a cacheName then return
-                    return caches.delete(cacheName);
-                }
-            })
-        ))
-
-    )
-});
-*/
-
-//Now we create offline mode
-
 
