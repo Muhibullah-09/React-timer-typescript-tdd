@@ -1,35 +1,46 @@
-/* This is sample of weather app
-//cache stands for storage of the browser if we load something once 
-// if we make a request for example if you load a image you dont have to load a image every time 
+//cache stands for storage of the browser if we load something once
+// if we make a request for example if you load a image you dont have to load a image every time
 //when you go online you just take it from the cache 'its faster and more effecctive'.
-const CACHE_NAME = "version-1";
+const CACHE_NAME = "StopWatch-1";
 
-//here offline.html is used when we offline
-const urlsToCache = ['index.html'];
 
-const self = this;
-
-// Install SW
-self.addEventListener('install', (event) => {
+//Cache Initializer
+self.addEventListener("install", (event) => {
     event.waitUntil(
-        caches.open(CACHE_NAME)
-            .then((cache) => {
-                console.log('Opened cache');
-
-                return cache.addAll(urlsToCache);
-            })
+        caches.open(CACHE_NAME).then((cache) => {
+            cache.addAll([
+                '/static/js/bundle.js',
+                '/static/js/0.chunk.js',
+                '/static/js/main.chunk.js',
+                '/index.html',
+                '/',
+            ])
+        })
     )
-});
+})
 
 // Listen for requests
-self.addEventListener('fetch', (event) => {
+self.addEventListener('fetch', function (event) {
     event.respondWith(
-        caches.match(event.request)//here request means EX: you need to see a image you send request
-            .then(() => {
-                return fetch(event.request)
-                    .catch(() => caches.match('index.html'))
-            })
-    )
+        fetch(event.request).catch(function () {
+            return caches.match(event.request);
+        })
+    );
+});
+
+/* This is sample of weather app
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.open(CACHE_NAME).then(cache => {
+     return cache.match(event.request).then(response => {
+      return response || fetch(event.request)
+      .then(response => {
+        const responseClone = response.clone();
+        cache.put(event.request, responseClone);
+        })
+      })
+    }
+ );
 });
 
 // Activate the SW
@@ -50,4 +61,6 @@ self.addEventListener('activate', (event) => {
 });
 */
 
-console.log('Registered')
+//Now we create offline mode
+
+
