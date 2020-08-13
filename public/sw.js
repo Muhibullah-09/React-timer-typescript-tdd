@@ -20,12 +20,16 @@ self.addEventListener("install", (event) => {
 })
 
 // Listen for requests
-self.addEventListener('fetch', function (event) {
-    event.respondWith(
-        fetch(event.request).catch(function () {
-            return caches.match(event.request);
-        })
-    );
+self.addEventListener('fetch', event => {
+    // Prevent the default, and handle the request ourselves.
+    event.respondWith(async function () {
+        // Try to get the response from a cache.
+        const cachedResponse = await caches.match(event.request);
+        // Return it if we found one.
+        if (cachedResponse) return cachedResponse;
+        // If we didn't find a match in the cache, use the network.
+        return fetch(event.request);
+    }());
 });
 
 

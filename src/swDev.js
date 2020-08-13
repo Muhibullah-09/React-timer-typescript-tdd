@@ -2,7 +2,7 @@ export default function swDev() {
     //For Push Notification
     const webpush = require('web-push');
     // VAPID keys should only be generated only once.
-    const vapidKeys = webpush.generateVAPIDKeys();
+    webpush.generateVAPIDKeys();
     function urlBase64ToUint8Array(base64String) {
         const padding = '='.repeat((4 - base64String.length % 4) % 4);
         const base64 = (base64String + padding)
@@ -23,13 +23,15 @@ export default function swDev() {
     }
     //For Seervice worker registration
     let swDev = `${process.env.PUBLIC_URL}/sw.js`
-    navigator.serviceWorker.register(swDev).then(async (response) => {
+    navigator.serviceWorker.register(swDev).then((response) => {
         //For Enable Notification
-        const subscrition = await response.pushManager.getSubscription();
-        return response.pushManager.subscribe({
-            userVisibleOnly: true,
-            applicationServerKey: determineAppServerKey()
-        });
+        return response.pushManager.getSubscription()
+            .then(function (subscription) {
+                response.pushManager.subscribe({
+                    userVisibleOnly: true,
+                    applicationServerKey: determineAppServerKey()
+                });
+            })
     })
         .catch((err) => {
             console.log('Error', err)
