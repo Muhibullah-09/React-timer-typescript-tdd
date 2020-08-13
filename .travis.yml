@@ -13,7 +13,7 @@ script:
 deploy:
   provider: surge
   skip_cleanup: true
-  domain: fantastic-balls.surge.sh
+  domain: https://fantastic-balls.surge.sh
   project: ./build/
 
 
