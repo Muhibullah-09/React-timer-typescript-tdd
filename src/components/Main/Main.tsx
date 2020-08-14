@@ -9,7 +9,6 @@ function Main() {
         let timeArray: Array<number | string> = CalculateTimer(timeInSeconds);
         setTimerArray(timeArray);
     }, [timeInSeconds]);
-
     return (
         <div>
             <section className="time-container">
