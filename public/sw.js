@@ -21,13 +21,15 @@ self.addEventListener("install", (event) => {
 
 // Listen for requests
 self.addEventListener('fetch', event => {
-    // console.log('url', event.request.url);
-    if (event.request.url === 'https://fantastic-balls.surge.sh/static/js/main.chunk.js') {
+    console.log('url', event.request.url);
+    if (event.request.url === 'http://localhost:3001/static/js/main.chunk.js') {
         event.waitUntil(
-            self.registration.showNotification("EebTech", {
-                body: 'Hello from EebTech'
+            this.registration.showNotification("EebTech", {
+                body: 'Hello from Muhibullah Khan Kamali',
+                icon: 'https://2vb7j048t3rt461f0o4i5i5f-wpengine.netdna-ssl.com/wp-content/uploads/2017/10/clock-icon.png'
             })
         );
+
     }
     // Prevent the default, and handle the request ourselves.
     event.respondWith(async function () {
