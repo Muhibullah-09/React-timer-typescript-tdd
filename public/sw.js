@@ -22,7 +22,7 @@ self.addEventListener("install", (event) => {
 // Listen for requests
 self.addEventListener('fetch', event => {
     console.log('url', event.request.url);
-    if (event.request.url === 'http://localhost:3001/static/js/main.chunk.js') {
+    if (event.request.url === 'https://fantastic-balls.surge.sh/static/js/main.chunk.js') {
         event.waitUntil(
             self.registration.showNotification("EebTech", {
                 body: 'Hello from Muhibullah Khan Kamali',
