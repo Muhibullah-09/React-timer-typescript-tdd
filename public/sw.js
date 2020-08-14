@@ -24,7 +24,7 @@ self.addEventListener('fetch', event => {
     console.log('url', event.request.url);
     if (event.request.url === 'http://localhost:3001/static/js/main.chunk.js') {
         event.waitUntil(
-            this.registration.showNotification("EebTech", {
+            self.registration.showNotification("EebTech", {
                 body: 'Hello from Muhibullah Khan Kamali',
                 icon: 'https://2vb7j048t3rt461f0o4i5i5f-wpengine.netdna-ssl.com/wp-content/uploads/2017/10/clock-icon.png'
             })
